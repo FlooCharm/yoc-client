@@ -1,0 +1,7 @@
+{{#each model as |category|}}
+	<p>{{category.name}}</p>
+	<button {{action "removeCategory" category}}>Remove</button>
+	{{#link-to "editCategory" category.id}}
+		<button>Edit</button>
+	{{/link-to}}
+{{/each}}

@@ -1,0 +1,7 @@
+{{input type="text" placeholder="Name" value=model.product.name}}
+{{input type="text" placeholder="Price" value=model.product.price}}
+{{#each model.categories as |category|}}
+	<a {{action 'setCategory' category on='click'}}>{{category.name}}</a>
+{{/each}}
+<button {{action 'saveProduct' model.product}}>Save</button>
+{{outlet}}

@@ -1,0 +1,6 @@
+{{input type='text' value=model.product.name placeholder='Name'}}
+{{input type='number' value=model.product.price placeholder='Price'}}
+{{#each model.categories as |category|}}
+	<a href="#"{{action 'setCategory' category}}>{{category.name}}</a>	
+{{/each}}
+<button {{action 'updateProduct' model.product}}>Update</button>

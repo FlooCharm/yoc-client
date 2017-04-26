@@ -1,0 +1,9 @@
+{{#each model as |product|}}
+	<p>Name: {{product.name}}</p>
+	<p>Price: ${{product.price}}</p>
+	<p>Category: {{product.category.name}}</p>
+	<button {{action 'removeProduct' product}}>Delete</button>
+	{{#link-to 'product.edit-product' product.id}}
+		<button>Edit</button>
+	{{/link-to}}
+{{/each}}

@@ -7,6 +7,9 @@ export default Ember.Route.extend({
 	actions: {
 		saveCategory (category) {
 			category.save();
+		},
+		willTransition () {
+			this.get("controller.model").rollbackAttributes();
 		}
 	}
 });

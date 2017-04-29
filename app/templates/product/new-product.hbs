@@ -1,7 +1,44 @@
+<h1>Create New Product</h1>
 {{input type="text" placeholder="Name" value=model.product.name}}
 {{input type="text" placeholder="Price" value=model.product.price}}
-{{#each model.categories as |category|}}
-	<a {{action 'setCategory' category on='click'}}>{{category.name}}</a>
+<h3>Select Category</h3>
+
+{{#jquery-wrapper query='.dropdown-button' method='dropdown'}}
+	<a class='dropdown-button btn btn-flat' href='#' data-activates='dropdown1'>
+		{{if model.product.category model.product.category.name 'Select plx'}}
+	</a>
+
+	<ul id='dropdown1' class='dropdown-content'>
+		{{#each model.categories as |category|}}
+			<li>
+				<a {{action 'setCategory' category on='click'}}>{{category.name}}</a>
+			</li>
+		{{/each}} <br>
+	</ul>
+
+{{/jquery-wrapper}}
+
+<button {{action 'addIngredient'}}>Add Ingredient</button>
+{{#each model.product.productIngredients as |productIngredient index|}}
+	<div class="row">
+		<div class="col s3">
+			{{#jquery-wrapper query='.dropdown-button' method='dropdown'}}
+				<a class='dropdown-button btn btn-flat' href='#' data-activates={{concat 'dropdown-' index}}>
+					{{if productIngredient.ingredient productIngredient.ingredient.name 'Select plx'}}
+				</a>
+				<ul id={{concat 'dropdown-' index}} class='dropdown-content'>
+					{{#each model.ingredients as |ingredient|}}
+						<li>
+							<a {{action 'setIngredient' ingredient productIngredient on='click'}}>{{ingredient.name}}</a>
+						</li>
+					{{/each}} <br>
+				</ul>
+			{{/jquery-wrapper}}
+		</div>
+		<div class="col s3">
+			{{input type='number' placeholder="Amount" value=model.product.productIngredient.amount}}
+		</div>
+	</div>
 {{/each}}
-<button {{action 'saveProduct' model.product}}>Save</button>
-{{outlet}}
+
+<br><button {{action 'saveProduct' model.product}}>Save</button>

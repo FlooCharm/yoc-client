@@ -15,6 +15,11 @@ Router.map(function() {
     this.route('list-product');
     this.route('edit-product', { path: 'edit-product/:id'});
   });
+  this.route('ingredient', function() {
+    this.route('new');
+    this.route('edit', {path: 'edit/:id'});
+    this.route('list');
+  });
 });
 
 export default Router;

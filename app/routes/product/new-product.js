@@ -4,6 +4,7 @@ export default Ember.Route.extend({
 	model () {
 		return {
 			categories: this.store.peekAll('category'),
+			ingredients: this.store.peekAll('ingredient'),
 			product: this.store.createRecord('product')
 		}
 	},
@@ -16,6 +17,13 @@ export default Ember.Route.extend({
 		},
 		setCategory (category) {
 			this.get('controller.model.product').set('category', category);
+		},
+		setIngredient (ingredient, productIngredient) {
+			productIngredient.set('ingredient', ingredient);
+		},		
+		addIngredient () {
+			let pi = this.store.createRecord('productIngredient');
+			this.get('controller.model.product.productIngredients').pushObject(pi);
 		}
 	}
 });

@@ -1,0 +1,8 @@
+{{#each model as |ingredient|}}
+	<p>{{ingredient.name}}</p>
+	<p>{{ingredient.price}}</p>
+	<button {{action 'removeIngredient' ingredient}}>Delete</button>
+	<button>
+		{{#link-to 'ingredient.edit' ingredient.id}}Edit{{/link-to}} 
+	</button>
+{{/each}}
